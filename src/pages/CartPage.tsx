@@ -24,9 +24,9 @@ export default function CartPage() {
   const whatsappMessage = encodeURIComponent("Hello, I'd like to proceed with my order:\n\n" + orderSummaryText + "Please let me know how to complete the payment.");
   const whatsappLink = `https://wa.me/237651591598?text=${whatsappMessage}`;
 
-  const emailSubject = encodeURIComponent("Order Inquiry - UK Logs Direct");
+  const emailSubject = encodeURIComponent("Order Inquiry - Logs Supply Pro");
   const emailBody = encodeURIComponent("Hello, I'd like to proceed with my order:\n\n" + orderSummaryText + "Please let me know how to complete the payment. My email is ar.frx@icloud.com"); // Assuming user email for now.
-  const emailLink = `mailto:kilndrywoods@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+  const emailLink = `mailto:logsupplypro1@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
   if (items.length === 0) {
     return (

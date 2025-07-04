@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react'
+import { Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react'
 import { mainProductTypes } from '../constants/productFilters'
 
 export default function Footer() {
@@ -12,12 +12,12 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-2">
-                <span className="text-white font-bold text-sm">UL</span>
+                <span className="text-white font-bold text-sm">LSP</span>
               </div>
-              <span className="text-xl font-bold">UK Logs Direct</span>
+              <span className="text-xl font-bold">Logs Supply Pro</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Premium quality kiln-dried logs delivered directly to your door. 
+              Premium quality logs delivered directly to your door. 
               Sustainable, efficient, and ready to burn.
             </p>
             <div className="flex space-x-4">
@@ -74,18 +74,11 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-green-600" />
-                <span className="text-gray-400">+237 6 51 59 15 98</span>
+                <span className="text-gray-400">+1 330-814-6802</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-green-600" />
-                <span className="text-gray-400">kilndrywoods@gmail.com</span>
-              </div>
-              <div className="flex items-start">
-                <MapPin className="w-5 h-5 mr-3 text-green-600 mt-1" />
-                <span className="text-gray-400">
-                  123 Forest Lane,<br />
-                  Woodland, UK WL1 2AB
-                </span>
+                <span className="text-gray-400">logsupplypro1@gmail.com</span>
               </div>
             </div>
           </div>
@@ -94,14 +87,14 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 UK Logs Direct. All rights reserved.
+              © 2024 Logs Supply Pro. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Terms of Service
+              <Link to="/terms-and-conditions" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Terms And Conditions
               </Link>
             </div>
           </div>

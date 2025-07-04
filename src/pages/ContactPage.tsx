@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react'
+import { Phone, Mail, Clock, Send } from 'lucide-react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -66,7 +66,7 @@ export default function ContactPage() {
                   <Phone className="w-6 h-6 text-green-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+237 6 51 59 15 98</p>
+                    <p className="text-gray-600">+1 330-814-6802</p>
                     <p className="text-sm text-gray-500">Mon-Fri 8AM-6PM, Sat 9AM-4PM</p>
                   </div>
                 </div>
@@ -74,19 +74,8 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6 text-green-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">kilndrywoods@gmail.com</p>
+                    <p className="text-gray-600">logsupplypro1@gmail.com</p>
                     <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-green-600 mr-4 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Address</h3>
-                    <p className="text-gray-600">
-                      123 Forest Lane<br />
-                      Woodland, Devon<br />
-                      UK WL1 2AB
-                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -117,7 +106,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">What's the moisture content of your logs?</h4>
-                  <p className="text-gray-600 text-sm">All our kiln-dried logs have a moisture content below 20%, guaranteed.</p>
+                  <p className="text-gray-600 text-sm">All our logs have a moisture content below 20%, guaranteed.</p>
                 </div>
               </div>
             </div>

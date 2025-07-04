@@ -159,7 +159,7 @@ export default function ShopPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Premium Kiln-Dried Logs
+            Premium Logs
           </h1>
           <p className="text-xl text-gray-600">
             Browse our complete range of high-quality logs and accessories

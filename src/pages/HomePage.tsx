@@ -44,12 +44,12 @@ export default function HomePage() {
     {
       icon: <Truck className="w-8 h-8 text-green-600" />,
       title: 'Free Delivery',
-      description: 'Free delivery on orders over £100 across the UK'
+      description: 'Free delivery on orders over £100 worldwide'
     },
     {
       icon: <Shield className="w-8 h-8 text-green-600" />,
       title: 'Quality Guaranteed',
-      description: 'Premium kiln-dried logs with moisture content below 20%'
+      description: 'Premium logs with moisture content below 20%'
     },
     {
       icon: <Leaf className="w-8 h-8 text-green-600" />,
@@ -67,7 +67,7 @@ export default function HomePage() {
     {
       name: 'Michael Thompson',
       rating: 5,
-      comment: 'Been using UK Logs Direct for 2 years now. Consistent quality and great service.'
+      comment: 'Been using Logs Supply Pro for 2 years now. Consistent quality and great service.'
     },
     {
       name: 'Emma Davis',
@@ -91,7 +91,7 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Premium Kiln-Dried Logs
+              Premium Logs
               <span className="block text-green-400">Delivered to Your Door</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8">
@@ -122,10 +122,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose UK Logs Direct?
+              Why Choose Logs Supply Pro?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're committed to providing the highest quality kiln-dried logs with exceptional service
+              We're committed to providing the highest quality logs with exceptional service
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -154,7 +154,7 @@ export default function HomePage() {
               Featured Products
             </h2>
             <p className="text-xl text-gray-600">
-              Our most popular kiln-dried logs for your heating needs
+              Our most popular products for your heating needs
             </p>
           </div>
           {loading ? (
@@ -186,11 +186,11 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Britain's Premium Log Supplier
+                World's Premium Log Supplier
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                With over 15 years of experience, UK Logs Direct has been providing premium 
-                kiln-dried logs to homes across the UK. Our commitment to quality and 
+                With over 15 years of experience, Logs Supply Pro has been providing premium 
+               logs to homes across the world. Our commitment to quality and 
                 sustainable sourcing ensures you get the best logs for your heating needs.
               </p>
               <div className="space-y-4">
@@ -208,7 +208,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-6 h-6 text-green-600 mr-3" />
-                  <span className="text-gray-700">UK-wide delivery available</span>
+                  <span className="text-gray-700">worldwide delivery available</span>
                 </div>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function HomePage() {
               What Our Customers Say
             </h2>
             <p className="text-xl text-gray-600">
-              Trusted by thousands of satisfied customers across the UK
+              Trusted by thousands of satisfied customers across the world
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -262,7 +262,7 @@ export default function HomePage() {
             Ready to Order Premium Logs?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Get your premium kiln-dried logs delivered directly to your door. 
+            Get your premium logs delivered directly to your door. 
             Perfect for your wood burner, stove, or open fire.
           </p>
           <Link

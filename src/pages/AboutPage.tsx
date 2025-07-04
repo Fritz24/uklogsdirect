@@ -47,11 +47,11 @@ export default function AboutPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              About UK Logs Direct
+              About Logs Supply Pro
             </h1>
             <p className="text-xl md:text-2xl text-gray-300">
-              Britain's trusted supplier of premium kiln-dried logs, 
-              serving homes across the UK for over 15 years.
+              Trusted supplier of premium logs, 
+              serving homes across the world for over 15 years.
             </p>
           </div>
         </div>
@@ -85,15 +85,14 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Founded in 2009, UK Logs Direct began as a small family business with a simple mission: 
-                  to provide British homes with the highest quality kiln-dried logs available. What started 
-                  in a small woodland in Devon has grown into one of the UK's most trusted log suppliers.
+                  Founded in 2009, Logs Supply Pro began as a small family business with a simple mission: 
+                  to provide homes with the highest quality logs available. What started in a small woodland in Devon has grown into one of the UK's most trusted log suppliers.
                 </p>
                 <p>
                   Our founder, James Mitchell, was frustrated by the poor quality and inconsistent moisture 
                   content of logs available in the market. He decided to take matters into his own hands, 
                   investing in state-of-the-art kiln-drying equipment and establishing direct relationships 
-                  with sustainable forestry operations across Britain.
+                  with sustainable forestry operations across the world.
                 </p>
                 <p>
                   Today, we're proud to serve over 10,000 satisfied customers across 48 counties, 
@@ -162,7 +161,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Sustainable Sourcing</h3>
               <p className="text-gray-600">
-                We source our hardwood exclusively from FSC-certified, sustainably managed forests across Britain.
+                We source our hardwood exclusively from FSC-certified, sustainably managed forests across the world.
               </p>
             </div>
             <div className="text-center">
@@ -195,7 +194,7 @@ export default function AboutPage() {
               Meet Our Team
             </h2>
             <p className="text-xl text-gray-600">
-              The passionate people behind UK Logs Direct
+              The passionate people behind Logs Supply Pro
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -204,7 +203,7 @@ export default function AboutPage() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2">James Mitchell</h3>
               <p className="text-green-600 font-medium mb-3">Founder & CEO</p>
               <p className="text-gray-600 text-sm">
-                With over 20 years in forestry, James founded UK Logs Direct to bring premium 
+                With over 20 years in forestry, James founded Logs Supply Pro to bring premium 
                 quality logs to British homes.
               </p>
             </div>
@@ -223,7 +222,7 @@ export default function AboutPage() {
               <p className="text-green-600 font-medium mb-3">Customer Service Manager</p>
               <p className="text-gray-600 text-sm">
                 Michael leads our customer service team, ensuring every customer has an 
-                exceptional experience with UK Logs Direct.
+                exceptional experience with Logs Supply Pro.
               </p>
             </div>
           </div>
