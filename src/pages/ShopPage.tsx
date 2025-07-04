@@ -3,6 +3,7 @@ import { Search, Filter, Grid, List, ChevronDown } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import ProductCard from '../components/ProductCard'
 import { mainProductTypes, productTypeDepartments } from '../constants/productFilters' // Import constants
+import { Helmet } from 'react-helmet-async'
 
 interface Product {
   id: string
@@ -155,6 +156,10 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      <Helmet>
+        <title>Logs Supply Pro - Shop All Logs | Kiln Dried, Hardwood & More</title>
+        <meta name="description" content="Browse our extensive range of premium logs, including kiln-dried, hardwood, and more. Find the perfect logs for your stove or fireplace with fast delivery." />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">

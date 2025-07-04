@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Phone, Mail, Clock, Send } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -34,6 +35,10 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>Contact Logs Supply Pro - Get in Touch</title>
+        <meta name="description" content="Have questions about our premium logs or need assistance with your order? Contact Logs Supply Pro via phone, email, or our online form." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative bg-gray-900 text-white py-24">
         <div className="absolute inset-0">

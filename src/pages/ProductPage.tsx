@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Plus, Minus, ShoppingCart, Star, Truck, Shield, Clock } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import { useCart } from '../contexts/CartContext'
+import { Helmet } from 'react-helmet-async'
 
 interface Product {
   id: string
@@ -81,6 +82,10 @@ export default function ProductPage() {
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+        <Helmet>
+          <title>Product Not Found - Logs Supply Pro</title>
+          <meta name="description" content="The product you are looking for could not be found on Logs Supply Pro." />
+        </Helmet>
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h1>
           <Link to="/shop" className="text-green-600 hover:text-green-700">
@@ -93,6 +98,15 @@ export default function ProductPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      <Helmet>
+        <title>{`Logs Supply Pro - ${product.name}`}</title>
+        <meta name="description" content={product.description} />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={product.image_url} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://www.logssupplypro.com/product/${product.id}`} />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="mb-8">

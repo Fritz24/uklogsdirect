@@ -1,8 +1,13 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function TermsAndConditionsPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>Terms and Conditions - Logs Supply Pro</title>
+        <meta name="description" content="Read the comprehensive Terms and Conditions for Logs Supply Pro, covering orders, payments, shipping, returns, website usage, and privacy policy." />
+      </Helmet>
       <div className="sm:mx-auto sm:w-full sm:max-w-3xl"> {/* Adjusted max-w for more content width */}
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-800">
           Terms and Conditions

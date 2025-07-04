@@ -12,6 +12,7 @@ import {
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { mainProductTypes, productTypeDepartments } from '../../constants/productFilters'
+import { Helmet } from 'react-helmet-async'
 
 interface Product {
   id: string
@@ -247,6 +248,10 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>Admin Dashboard - Logs Supply Pro</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>

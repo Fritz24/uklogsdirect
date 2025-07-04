@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
 import { useCart } from '../contexts/CartContext'
+import { Helmet } from 'react-helmet-async'
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, total, clearCart } = useCart()
@@ -31,6 +32,10 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 py-16">
+        <Helmet>
+          <title>Your Cart is Empty - Logs Supply Pro</title>
+          <meta name="description" content="Your Logs Supply Pro shopping cart is currently empty. Explore our premium logs and fill your cart today!" />
+        </Helmet>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ShoppingBag className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Your Cart is Empty</h1>
@@ -50,6 +55,10 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      <Helmet>
+        <title>Shopping Cart - Logs Supply Pro</title>
+        <meta name="description" content="Review your selected logs and accessories in the Logs Supply Pro shopping cart before proceeding to checkout." />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>

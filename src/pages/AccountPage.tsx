@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
+import { Helmet } from 'react-helmet-async'
 
 interface Profile {
   id: string;
@@ -119,6 +120,10 @@ export default function AccountPage() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+        <Helmet>
+          <title>Access Denied - Logs Supply Pro</title>
+          <meta name="description" content="Access to this page is denied. Please log in to your Logs Supply Pro account." />
+        </Helmet>
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h1>
           <p className="text-gray-600 mb-8">Please log in to view your account details.</p>
@@ -132,6 +137,10 @@ export default function AccountPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      <Helmet>
+        <title>My Account - Logs Supply Pro</title>
+        <meta name="description" content="Manage your Logs Supply Pro account details, including your profile information and orders." />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">My Account</h1>
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -200,7 +209,7 @@ export default function AccountPage() {
               <div>
                 <label htmlFor="telephoneNo" className="block text-sm font-medium text-gray-700">Telephone No.</label>
                 <input
-                  type="text"
+                  type="tel"
                   id="telephone_no"
                   name="telephone_no"
                   value={profile?.telephone_no || ''}
@@ -210,29 +219,31 @@ export default function AccountPage() {
               </div>
               <div className="flex items-center">
                 <input
-                  type="checkbox"
                   id="joinNewsletter"
                   name="join_newsletter"
+                  type="checkbox"
                   checked={profile?.join_newsletter || false}
                   onChange={handleInputChange}
-                  className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                  className="form-checkbox h-4 w-4 text-green-600 transition duration-150 ease-in-out"
                 />
-                <label htmlFor="joinNewsletter" className="ml-2 block text-sm text-gray-900">Join Newsletter</label>
+                <label htmlFor="joinNewsletter" className="ml-2 block text-sm text-gray-900">
+                  Join our newsletter
+                </label>
               </div>
-              <div className="flex space-x-4 mt-6">
-                <button
-                  type="submit"
-                  disabled={loadingProfile}
-                  className="bg-green-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loadingProfile ? 'Saving...' : 'Save Changes'}
-                </button>
+              <div className="flex justify-end space-x-4 mt-6">
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="bg-gray-300 text-gray-800 px-6 py-2 rounded-md font-semibold hover:bg-gray-400 transition-colors"
+                  className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={loadingProfile}
+                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loadingProfile ? 'Saving...' : 'Save Changes'}
                 </button>
               </div>
             </form>

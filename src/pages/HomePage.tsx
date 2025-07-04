@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Truck, Shield, Leaf, Star, CheckCircle } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import ProductCard from '../components/ProductCard'
+import { Helmet } from 'react-helmet-async'
 
 interface Product {
   id: string
@@ -78,6 +79,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Logs Supply Pro - Premium Logs Delivered to Your Door</title>
+        <meta name="description" content="High-quality, sustainably sourced hardwood logs with guaranteed low moisture content. Perfect for wood burners, stoves, and open fires. Shop now for free delivery on orders over £100." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative bg-gray-900 text-white">
         <div className="absolute inset-0">
@@ -200,22 +205,25 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-6 h-6 text-green-600 mr-3" />
-                  <span className="text-gray-700">Sustainably sourced hardwood</span>
+                  <span className="text-gray-700">Eco-friendly and carbon neutral</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-6 h-6 text-green-600 mr-3" />
-                  <span className="text-gray-700">Ready to burn immediately</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-6 h-6 text-green-600 mr-3" />
-                  <span className="text-gray-700">worldwide delivery available</span>
+                  <span className="text-gray-700">Free local delivery on all orders</span>
                 </div>
               </div>
+              <Link
+                to="/about"
+                className="inline-flex items-center bg-green-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors mt-8"
+              >
+                Learn More About Us
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </div>
             <div>
               <img
-                src="/images/home-feature.jpg"
-                alt="Stacked logs"
+                src="/images/about-feature.jpg"
+                alt="About Logs Supply Pro"
                 loading="lazy"
                 className="rounded-lg shadow-lg"
               />
@@ -232,23 +240,19 @@ export default function HomePage() {
               What Our Customers Say
             </h2>
             <p className="text-xl text-gray-600">
-              Trusted by thousands of satisfied customers across the world
+              Hear from happy customers who trust Logs Supply Pro
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center mb-4">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="flex justify-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current text-yellow-400" />
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-4 italic">
-                  "{testimonial.comment}"
-                </p>
-                <p className="font-semibold text-gray-900">
-                  {testimonial.name}
-                </p>
+                <p className="text-gray-700 italic mb-4">"{testimonial.comment}"</p>
+                <p className="font-semibold text-gray-900">- {testimonial.name}</p>
               </div>
             ))}
           </div>
@@ -256,20 +260,19 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-green-600 text-white">
+      <section className="py-16 bg-green-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Order Premium Logs?
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Experience the Best Logs?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Get your premium logs delivered directly to your door. 
-            Perfect for your wood burner, stove, or open fire.
+          <p className="text-xl text-gray-200 mb-8">
+            Order now and get premium quality logs delivered right to your home.
           </p>
           <Link
             to="/shop"
-            className="inline-flex items-center bg-white text-green-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center bg-white text-green-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
           >
-            Shop Now
+            Shop All Logs
             <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </div>

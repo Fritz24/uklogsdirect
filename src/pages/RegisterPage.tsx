@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Eye, EyeOff, HelpCircle } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
+import { Helmet } from 'react-helmet-async'
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('')
@@ -125,6 +126,10 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>Create Your Account - Logs Supply Pro</title>
+        <meta name="description" content="Register for a new account with Logs Supply Pro to easily manage your orders, delivery addresses, and newsletter preferences." />
+      </Helmet>
       <div className="sm:mx-auto sm:w-full sm:max-w-xl">
         <div className="flex justify-center mb-6">
           <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">

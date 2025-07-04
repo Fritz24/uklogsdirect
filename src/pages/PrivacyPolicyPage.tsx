@@ -1,8 +1,13 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>Privacy Policy - Logs Supply Pro</title>
+        <meta name="description" content="Read the Privacy Policy of Logs Supply Pro to understand how we collect, use, and protect your personal information when you use our website." />
+      </Helmet>
       <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-800">
           Privacy Policy

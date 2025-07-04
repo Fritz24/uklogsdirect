@@ -1,5 +1,6 @@
 import React from 'react'
 import { CheckCircle, Users, Truck, Leaf } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
 
 export default function AboutPage() {
   const stats = [
@@ -34,6 +35,10 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>About Logs Supply Pro - Our Story & Values</title>
+        <meta name="description" content="Learn about Logs Supply Pro: our 15+ years of experience, commitment to sustainable sourcing, quality logs, and dedication to customer satisfaction." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative bg-gray-900 text-white py-24">
         <div className="absolute inset-0">

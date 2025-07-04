@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { Helmet } from 'react-helmet-async'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -36,6 +37,10 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>Login to Your Account - Logs Supply Pro</title>
+        <meta name="description" content="Log in to your Logs Supply Pro account to manage orders, track shipments, and access your personalized dashboard." />
+      </Helmet>
       <div className="sm:mx-auto sm:w-full sm:max-w-xl">
         <div className="flex justify-center mb-6">
           <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
