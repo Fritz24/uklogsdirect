@@ -222,7 +222,7 @@ export default function HomePage() {
             </div>
             <div>
               <img
-                src="/images/about-feature.jpg"
+                src="/images/home-feature.jpg"
                 alt="About Logs Supply Pro"
                 loading="lazy"
                 className="rounded-lg shadow-lg"
