@@ -7,7 +7,7 @@ import { useCart } from '../contexts/CartContext'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
-  const { user, signOut, isAdmin } = useAuth()
+  const { user, signOut, isAdmin, loading, profileLoading } = useAuth()
   const { itemCount } = useCart()
   const navigate = useNavigate()
   const location = useLocation()
@@ -94,7 +94,7 @@ export default function Navbar() {
                     >
                       My Account
                     </Link>
-                    {isAdmin && (
+                    {!loading && !profileLoading && isAdmin && (
                       <Link
                         to="/admin"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
@@ -172,7 +172,7 @@ export default function Navbar() {
                 >
                   My Account
                 </Link>
-                {isAdmin && (
+                {!loading && !profileLoading && isAdmin && (
                   <Link
                     to="/admin"
                     className="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-50 hover:text-green-600 flex items-center"

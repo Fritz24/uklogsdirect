@@ -9,6 +9,7 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
   isAdmin: boolean
+  profileLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -17,11 +18,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [profileLoading, setProfileLoading] = useState(true);
 
   const checkAdminStatus = async (userId: string | undefined) => {
     console.log('checkAdminStatus called with userId:', userId); // Debug log
+    setProfileLoading(true);
     if (!userId) {
       setIsAdmin(false);
+      setProfileLoading(false);
       return;
     }
     try {
@@ -59,6 +63,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('Caught unexpected error in checkAdminStatus:', error);
       setIsAdmin(false);
+    } finally {
+      setProfileLoading(false);
     }
   }
 
@@ -66,7 +72,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const handleAuthChange = async (event: string, session: any | null) => {
       console.log('Auth state changed:', event, session); // Debug log
       setUser(session?.user ?? null)
-      await checkAdminStatus(session?.user?.id);
+      if (session?.user) {
+        await checkAdminStatus(session.user.id);
+      } else {
+        setIsAdmin(false);
+        setProfileLoading(false);
+      }
       setLoading(false)
     }
 
@@ -74,7 +85,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       console.log('Initial session:', session); // Debug log
       setUser(session?.user ?? null)
-      await checkAdminStatus(session?.user?.id);
+      if (session?.user) {
+        await checkAdminStatus(session.user.id);
+      } else {
+        setIsAdmin(false);
+        setProfileLoading(false);
+      }
       setLoading(false)
     })
 
@@ -111,6 +127,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Explicitly clear user and admin status after successful sign out
     setUser(null);
     setIsAdmin(false);
+    setProfileLoading(false);
   }
 
   const value = {
@@ -120,6 +137,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signIn,
     signOut,
     isAdmin,
+    profileLoading,
   }
 
   return (
