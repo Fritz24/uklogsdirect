@@ -31,16 +31,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       console.log('Attempting to query profiles table for role...'); // New debug log
       // Assuming you have a 'profiles' table with a 'role' column and 'id' matching auth.users.id
-      let data, error;
-      const timeout = new Promise((_, reject) =>
+      let data: { role: string } | null = null, error: any = null;
+      const timeout = new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('Supabase profiles query timed out after 10 seconds')), 10000)
       );
 
       try {
-        ({ data, error } = await Promise.race([
+        const result = await Promise.race([
           supabase.from('profiles').select('role').eq('id', userId).single(),
           timeout
-        ]));
+        ]);
+        // Type assertion to ensure TypeScript knows the structure of the result
+        data = (result as { data: { role: string } | null }).data;
+        error = (result as { error: any }).error;
       } catch (e) {
         console.error('Supabase query execution error in checkAdminStatus:', e); // Log direct execution errors
         error = e; // Assign the caught error to the error variable

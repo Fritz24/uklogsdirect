@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X, ShoppingCart, User, LogOut, Settings } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
@@ -11,6 +11,9 @@ export default function Navbar() {
   const { itemCount } = useCart()
   const navigate = useNavigate()
   const location = useLocation()
+
+  // Debug logs
+  console.log('Navbar Render - User:', user?.email, 'Loading:', loading, 'Profile Loading:', profileLoading, 'Is Admin:', isAdmin);
 
   const handleSignOut = async () => {
     try {
