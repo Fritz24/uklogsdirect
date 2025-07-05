@@ -9,7 +9,6 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
   isAdmin: boolean
-  profileLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -18,71 +17,61 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
-  const [profileLoading, setProfileLoading] = useState(true);
 
   const checkAdminStatus = async (userId: string | undefined) => {
     console.log('checkAdminStatus called with userId:', userId); // Debug log
-    setProfileLoading(true);
-
-    // TEMPORARY WORKAROUND: Hardcode admin status for specific user IDs
-    // REMEMBER TO REVERT THIS AFTER SUPABASE BACKEND IS STABLE!
-    const hardcodedAdminIds = [
-      '58b0828a-944b-42fc-9cee-4e47f4c32be6', // tzykrain@gmail.com
-      'aa804487-6f4d-422c-873f-a982d0d76e98'  // ar.frx@icloud.com
-    ]; 
-    if (userId && hardcodedAdminIds.includes(userId)) {
-      setIsAdmin(true);
-      setProfileLoading(false);
-      console.log('isAdmin temporarily hardcoded to TRUE for:', userId);
-      return; // Skip Supabase call for these users
-    }
-    // END TEMPORARY WORKAROUND
-
     if (!userId) {
       setIsAdmin(false);
-      setProfileLoading(false);
       return;
     }
     try {
       console.log('Attempting to query profiles table for role...'); // New debug log
-      // Assuming you have a 'profiles' table with a 'role' column and 'id' matching auth.users.id
-      let data: { role: string } | null = null, error: any = null;
-      const timeout = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('Supabase profiles query timed out after 10 seconds')), 10000)
-      );
+
+      let data: { role: string } | null = null;
+      let error: any = null; // Can be PostgrestError or generic Error
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
       try {
-        const result = await Promise.race([
-          supabase.from('profiles').select('role').eq('id', userId).single(),
-          timeout
-        ]);
-        // Type assertion to ensure TypeScript knows the structure of the result
-        data = (result as { data: { role: string } | null }).data;
-        error = (result as { error: any }).error;
-      } catch (e) {
-        console.error('Supabase query execution error in checkAdminStatus:', e); // Log direct execution errors
-        error = e; // Assign the caught error to the error variable
+        const { data: profileData, error: profileError } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', userId)
+          .single({ signal: controller.signal }); // Pass the abort signal
+
+        data = profileData;
+        error = profileError;
+
+      } catch (e: any) {
+        // This catch block handles both Supabase errors and AbortError from timeout
+        console.error('Supabase query execution error or timeout in checkAdminStatus:', e);
+        error = e;
+      } finally {
+        window.clearTimeout(timeoutId); // Explicitly use window.clearTimeout to resolve linter error
       }
 
-      console.log('Supabase profiles query result:', { data, error }); // Existing debug log
+      console.log('Supabase profiles query result:', { data, error });
 
       if (error) {
         if (error.code === 'PGRST116') { // No rows found
           console.warn('Profile not found for user ID:', userId, '- Not an admin.');
           setIsAdmin(false);
-        } else {
-          console.error('Error fetching user role from profiles (after query):', error); // More specific log
-          setIsAdmin(false); // Ensure isAdmin is false on any error
+        } else if (error.name === 'AbortError') { // Handle explicit timeout
+          console.error('Supabase profiles query timed out.');
+          setIsAdmin(false);
+        }
+        else {
+          console.error('Error fetching user role from profiles (after query):', error);
+          setIsAdmin(false);
         }
       } else {
         setIsAdmin(data?.role === 'admin');
         console.log('isAdmin set to:', data?.role === 'admin');
       }
     } catch (error) {
-      console.error('Caught unexpected error in checkAdminStatus:', error);
+      console.error('Caught unexpected error in checkAdminStatus (outer catch):', error);
       setIsAdmin(false);
-    } finally {
-      setProfileLoading(false);
     }
   }
 
@@ -90,12 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const handleAuthChange = async (event: string, session: any | null) => {
       console.log('Auth state changed:', event, session); // Debug log
       setUser(session?.user ?? null)
-      if (session?.user) {
-        await checkAdminStatus(session.user.id);
-      } else {
-        setIsAdmin(false);
-        setProfileLoading(false);
-      }
+      await checkAdminStatus(session?.user?.id);
       setLoading(false)
     }
 
@@ -103,12 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       console.log('Initial session:', session); // Debug log
       setUser(session?.user ?? null)
-      if (session?.user) {
-        await checkAdminStatus(session.user.id);
-      } else {
-        setIsAdmin(false);
-        setProfileLoading(false);
-      }
+      await checkAdminStatus(session?.user?.id);
       setLoading(false)
     })
 
@@ -145,7 +124,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Explicitly clear user and admin status after successful sign out
     setUser(null);
     setIsAdmin(false);
-    setProfileLoading(false);
   }
 
   const value = {
@@ -155,7 +133,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signIn,
     signOut,
     isAdmin,
-    profileLoading,
   }
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X, ShoppingCart, User, LogOut, Settings } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
@@ -7,13 +7,10 @@ import { useCart } from '../contexts/CartContext'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
-  const { user, signOut, isAdmin, loading, profileLoading } = useAuth()
+  const { user, signOut, isAdmin } = useAuth()
   const { itemCount } = useCart()
   const navigate = useNavigate()
   const location = useLocation()
-
-  // Debug logs
-  console.log('Navbar Render - User:', user?.email, 'Loading:', loading, 'Profile Loading:', profileLoading, 'Is Admin:', isAdmin);
 
   const handleSignOut = async () => {
     try {
@@ -97,7 +94,7 @@ export default function Navbar() {
                     >
                       My Account
                     </Link>
-                    {!loading && !profileLoading && isAdmin && (
+                    {isAdmin && (
                       <Link
                         to="/admin"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
@@ -175,7 +172,7 @@ export default function Navbar() {
                 >
                   My Account
                 </Link>
-                {!loading && !profileLoading && isAdmin && (
+                {isAdmin && (
                   <Link
                     to="/admin"
                     className="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-50 hover:text-green-600 flex items-center"
