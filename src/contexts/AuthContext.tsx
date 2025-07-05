@@ -23,6 +23,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const checkAdminStatus = async (userId: string | undefined) => {
     console.log('checkAdminStatus called with userId:', userId); // Debug log
     setProfileLoading(true);
+
+    // TEMPORARY WORKAROUND: Hardcode admin status for specific user IDs
+    // REMEMBER TO REVERT THIS AFTER SUPABASE BACKEND IS STABLE!
+    const hardcodedAdminIds = [
+      '58b0828a-944b-42fc-9cee-4e47f4c32be6', // tzykrain@gmail.com
+      'aa804487-6f4d-422c-873f-a982d0d76e98'  // ar.frx@icloud.com
+    ]; 
+    if (userId && hardcodedAdminIds.includes(userId)) {
+      setIsAdmin(true);
+      setProfileLoading(false);
+      console.log('isAdmin temporarily hardcoded to TRUE for:', userId);
+      return; // Skip Supabase call for these users
+    }
+    // END TEMPORARY WORKAROUND
+
     if (!userId) {
       setIsAdmin(false);
       setProfileLoading(false);
